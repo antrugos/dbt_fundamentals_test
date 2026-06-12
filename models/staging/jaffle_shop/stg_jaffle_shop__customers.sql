@@ -3,13 +3,9 @@ with source as (
 ),
 renamed as (
     select
-        id,
+        id as customer_id,
         first_name,
         last_name
     from source
 )
-<<<<<<< HEAD
-=======
-
->>>>>>> 9ee8f76a2bfbb0cdc4346f6a7c49c710c07f6ad1
 select * from renamed
