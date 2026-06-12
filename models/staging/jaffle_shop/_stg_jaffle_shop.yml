@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: stg_jaffle_shop__customers
+    description: The grain of this table is one unique customer per row
+    columns:
+      - name: customer_id
+        description: primary key for the customer table. This is the unique identifier for each customer
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: customer's first name
+      - name: last_name
+        description: customer's last name
+
+  - name: stg_jaffle_shop__orders
+    description: One order per row
+    columns:
+      - name: order_id
+        description: Primary key for the orders table
+        tests:
+          - unique
+          - not_null
+      - name: order_status
+        description: "{{ doc('order_status') }}"
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - completed
+                  - shipped
+                  - placed
+                  - return_pending
+                  - returned
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_jaffle_shop__customers')
+                field: customer_id
+      - name: order_date
+        tests:
+          - not_null
+      - name: _etl_loaded_at
