@@ -5,12 +5,14 @@ models:
     description: The grain of this table is one unique customer per row
     columns:
       - name: customer_id
-        description: primary key for the customer table
+        description: primary key for the customer table. This is the unique identifier for each customer
         tests:
           - unique
           - not_null
       - name: first_name
+        description: customer's first name
       - name: last_name
+        description: customer's last name
 
   - name: stg_jaffle_shop__orders
     description: One order per row
