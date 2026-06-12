@@ -34,6 +34,7 @@ models:
                   - return_pending
                   - returned
       - name: customer_id
+        description: Foreign key to stg_customers.customer_id
         tests:
           - not_null
           - relationships:
